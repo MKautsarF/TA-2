@@ -290,6 +290,12 @@ public class PointRenderer : MonoBehaviour {
                 Destroy(dPoints[index]);
                 // Destroy(dGempa[index]);
             }
+            for (int indexG = 0; indexG < dGempa.Count; indexG++)
+            {
+                // dPoints.Remove(index);
+                // Destroy(dPoints[index]);
+                Destroy(dGempa[indexG]);
+            }
             // foreach (var gObj in dPoints)
             // {
             //     dPoints.Remove(gObj);
