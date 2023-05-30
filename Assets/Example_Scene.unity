@@ -3595,9 +3595,13 @@ MonoBehaviour:
   pointGempaScale: 0.5
   particleScale: 2
   PointPrefab: {fileID: 1103527760695654, guid: f651331ec8b2b0d43abf2f06b702bd1f, type: 3}
+  GempaPrefab: {fileID: 1103527760695654, guid: 175a7b32d0b14064fbdbdbefe0eaa5d9, type: 3}
   PointHolder: {fileID: 1290343665}
   GempaHolder: {fileID: 1721959351}
   dataPoint: {fileID: 0}
+  gempaPoint: {fileID: 0}
+  dPoints: []
+  dGempa: []
   logic: {fileID: 377767086}
   posisi: 
   trigger: {fileID: 306414402}

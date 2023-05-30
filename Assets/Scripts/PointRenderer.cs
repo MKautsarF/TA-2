@@ -70,11 +70,13 @@ public class PointRenderer : MonoBehaviour {
 
     // The prefab for the data particlePoints that will be instantiated
     public GameObject PointPrefab;
+    public GameObject GempaPrefab;
 
     // Object which will contain instantiated prefabs in hiearchy
     public GameObject PointHolder;
     public GameObject GempaHolder;
     public GameObject dataPoint;
+    public GameObject gempaPoint;
     Vector3 position;
     Vector3 center;
     Vector3 center2;
@@ -108,6 +110,8 @@ public class PointRenderer : MonoBehaviour {
 
     // List for holding data from CSV reader
     public List<Dictionary<string, object>> pointList;
+    public List<GameObject> dPoints = new List<GameObject>();
+    public List<GameObject> dGempa = new List<GameObject>();
 
     // Particle system for holding point particles
     private ParticleSystem.Particle[] particlePoints; 
@@ -268,18 +272,29 @@ public class PointRenderer : MonoBehaviour {
             // pointList = CSVReader.Read(button.updateCSV());
             inputfile = button.updateCSV();
             UpdateVisualization(inputfile);
+            
             // panggil fungsi hapus visual lama
             // Destroy(dataPoint);
-            
-            for (var ii = 0; ii < rowCount; ii++)
+            // for (var ii = 0; ii < rowCount; ii++)
+            // {
+            //     // Destroy(GameObject.FindWithTag("datapoint"));
+            //     GameObject obj = GameObject.FindWithTag("datapoint");
+            //     if (obj)
+            //     {
+            //         Destroy(obj);
+            //     }
+            // }
+            for (int index = 0; index < dPoints.Count; index++)
             {
-                // Destroy(GameObject.FindWithTag("datapoint"));
-                GameObject obj = GameObject.FindWithTag("datapoint");
-                if (obj)
-                {
-                    Destroy(obj);
-                }
+                // dPoints.Remove(index);
+                Destroy(dPoints[index]);
+                // Destroy(dGempa[index]);
             }
+            // foreach (var gObj in dPoints)
+            // {
+            //     dPoints.Remove(gObj);
+            //     Destroy(gObj);
+            // }
 
             // panggil fungsi bikin visual baru
             PlacePrefabPoints();
@@ -299,21 +314,22 @@ public class PointRenderer : MonoBehaviour {
     {
         position2 = center * gempaScale;
         // Debug.Log(position2);
-        dataPoint = Instantiate (PointPrefab, Vector3.zero, Quaternion.identity);
+        gempaPoint = Instantiate (GempaPrefab, Vector3.zero, Quaternion.identity);
+        dGempa.Add(gempaPoint);
 
         // Debug.Log(center);// Converts index to string to name the point the index number
-        string dataPointName = "Titik Gempa";
+        string gempaPointName = "Titik Gempa";
 
         // Assigns name to the prefab
-        dataPoint.transform.name = dataPointName;
+        gempaPoint.transform.name = gempaPointName;
 
         // Make child of PointHolder object, to keep particlePoints within container in hiearchy
-        dataPoint.transform.parent = GempaHolder.transform;
+        gempaPoint.transform.parent = GempaHolder.transform;
 
         // Position point at relative to parent
-        dataPoint.transform.localPosition = position2;
+        gempaPoint.transform.localPosition = position2;
 
-        dataPoint.transform.localScale = new Vector3(pointGempaScale, pointGempaScale, pointGempaScale);
+        gempaPoint.transform.localScale = new Vector3(pointGempaScale, pointGempaScale, pointGempaScale);
 
         // warna
         if (renderPrefabsWithColor == true)
@@ -321,12 +337,12 @@ public class PointRenderer : MonoBehaviour {
                 // Sets color according to x/y/z value
                 // Color color = GetGradientColor(x, y, z); // Call the method to get gradient color
                 Color color = Color.red;
-                dataPoint.GetComponent<Renderer>().material.color = color;
+                gempaPoint.GetComponent<Renderer>().material.color = color;
 
                 // Activate emission color keyword so we can modify emission color
-                dataPoint.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                gempaPoint.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
 
-                dataPoint.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+                gempaPoint.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
             }
     }
 
@@ -444,6 +460,7 @@ public class PointRenderer : MonoBehaviour {
 
             //instantiate as gameobject variable so that it can be manipulated within loop
             dataPoint = Instantiate (PointPrefab, Vector3.zero, Quaternion.identity);
+            dPoints.Add(dataPoint);
             // dataPoint = Instantiate (PointPrefab, position, Quaternion.identity);
 
 
