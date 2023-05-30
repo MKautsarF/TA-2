@@ -220,9 +220,11 @@ public class PointRenderer : MonoBehaviour {
             // bool found = false;
             // Call PlacePoint methods defined below
             PlacePrefabPoints();
+            // Debug.Log(dPoints);
             if (myString2 != null)
             {
                 PlacePrefabGempa();
+                // Debug.Log(dGempa.Count);
             }
             // for (var i = 0; i < pointList.Count; i++)
             // {
@@ -266,12 +268,23 @@ public class PointRenderer : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log("masuk ganti csv-1");
+        // Debug.Log("masuk ganti csv-1");
+        if(Input.GetKey(KeyCode.UpArrow))
+        {
+            button.ReadNextCSVFile();
+        }
+        
+        else if(Input.GetKey(KeyCode.DownArrow))
+        {
+            button.ReadPreviousCSVFile();
+        }
+
         if(inputfile != button.updateCSV())
         {
             // pointList = CSVReader.Read(button.updateCSV());
             inputfile = button.updateCSV();
             UpdateVisualization(inputfile);
+            GameObject.Find("Dataset_Label").GetComponent<TextMesh>().text = inputfile;
             
             // panggil fungsi hapus visual lama
             // Destroy(dataPoint);
@@ -284,23 +297,33 @@ public class PointRenderer : MonoBehaviour {
             //         Destroy(obj);
             //     }
             // }
-            for (int index = 0; index < dPoints.Count; index++)
-            {
-                // dPoints.Remove(index);
-                Destroy(dPoints[index]);
-                // Destroy(dGempa[index]);
-            }
-            for (int indexG = 0; indexG < dGempa.Count; indexG++)
-            {
-                // dPoints.Remove(index);
-                // Destroy(dPoints[index]);
-                Destroy(dGempa[indexG]);
-            }
-            // foreach (var gObj in dPoints)
+            // for (int index = 0; index < dPoints.Count; index++)
             // {
-            //     dPoints.Remove(gObj);
-            //     Destroy(gObj);
+            //     // var gObj = ;
+            //     Destroy(dPoints[index]);
+            //     dPoints.Remove(dataPoint);
+            //     // gObj++;
+            //     // Destroy(dGempa[index]);
             // }
+            // for (int indexG = 0; indexG < dGempa.Count; indexG++)
+            // {
+            //     // dPoints.Remove(index);
+            //     // Destroy(dPoints[index]);
+            //     Destroy(dGempa[indexG]);
+            //     dGempa.Remove(gempaPoint);
+            // }
+            foreach (var dataPoint in dPoints)
+            {
+                Destroy(dataPoint);
+            }
+            dPoints.Clear();
+            Debug.Log(myString2);
+
+            foreach (var gempaPoint in dGempa)
+            {
+                Destroy(gempaPoint);
+            }
+            dGempa.Clear();
 
             // panggil fungsi bikin visual baru
             PlacePrefabPoints();
@@ -308,7 +331,7 @@ public class PointRenderer : MonoBehaviour {
             {
                 PlacePrefabGempa();
             }
-            Debug.Log("masuk ganti csv-2");
+            // Debug.Log("masuk ganti csv-2");
         }
         //Activate Particle System
        //GetComponent<ParticleSystem>().SetParticles(particlePoints, particlePoints.Length);
@@ -364,6 +387,7 @@ public class PointRenderer : MonoBehaviour {
                 for (var i = 0; i < rowCount; i++)
         {
             myString = (pointList[i][aColumnName]).ToString();
+            // myString2 = myString;
             // Debug.Log(myString);
             // Debug.Log(magicWords);
             
@@ -410,6 +434,10 @@ public class PointRenderer : MonoBehaviour {
                 // Debug.Log(myString2);
                 // Debug.Log("ketemu nih"); 
                 i++;
+            }
+            if((i == rowCount-1)&(found==false))
+            {
+                myString2 = null;
             }
             // Debug.Log(i);
             
@@ -526,12 +554,15 @@ public class PointRenderer : MonoBehaviour {
                 // Debug.Log(panjang);
                 
                 // Debug.Log("ini a: "+a);
-                float a1 = a * 10;
+                // float a1 = a * 10;
+                float a1 = 7.210207f;
                 // Debug.Log("ini a1: "+a1);
                 float b1 = b * 10;
                 float x1 = x * 10;
                 float y1 = y * 10;
-                float c1 = c * 10;
+                // float c1 = c * 10;
+                float c1 = 7.694039f;
+                // Debug.Log("ini c1: "+c1);
                 float z1 = z * 10;
                     // Debug.Log(z);
                     // Debug.Log(position);
@@ -629,7 +660,9 @@ public class PointRenderer : MonoBehaviour {
                 // Debug.Log("ini t yang ke-"+i+ " nilai afternya: "+t);
 
                 // Debug.Log(t + " ini bola ke: "+i);
-                if (found==true) //tapi gamasuk kesini
+                int index = button.getIndex();
+                if ((index>=13)&(index<=19))
+                // if (found==true) 
                 {
                     Debug.Log("berhasil masuk");
                     color = Color.Lerp(Color.red, Color.green, t);
