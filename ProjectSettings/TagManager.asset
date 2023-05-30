@@ -9,6 +9,7 @@ TagManager:
   - test
   - DataPoint
   - pulau
+  - datapoint
   layers:
   - Default
   - TransparentFX

@@ -137,7 +137,7 @@ public class PointRenderer : MonoBehaviour {
     // Use this for initialization
     void Start () 
 	{
-       
+        
         //Debug.Log(pointList);
         // Store dictionary keys (column names in CSV) in a list
         List<string> columnList = new List<string>(pointList[1].Keys);
@@ -269,7 +269,18 @@ public class PointRenderer : MonoBehaviour {
             inputfile = button.updateCSV();
             UpdateVisualization(inputfile);
             // panggil fungsi hapus visual lama
-            Destroy(dataPoint);
+            // Destroy(dataPoint);
+            
+            for (var ii = 0; ii < rowCount; ii++)
+            {
+                // Destroy(GameObject.FindWithTag("datapoint"));
+                GameObject obj = GameObject.FindWithTag("datapoint");
+                if (obj)
+                {
+                    Destroy(obj);
+                }
+            }
+
             // panggil fungsi bikin visual baru
             PlacePrefabPoints();
             if (myString2 != null)
@@ -323,10 +334,10 @@ public class PointRenderer : MonoBehaviour {
 	private void PlacePrefabPoints()
 	{
         bool found = false;
+        rowCount = pointList.Count;
         // bool found2 = false;
         // Get count (number of rows in table)
-        rowCount = pointList.Count;
-        // Debug.Log(rowCount);
+        Debug.Log(rowCount);
 
                 for (var i = 0; i < rowCount; i++)
         {
@@ -655,7 +666,6 @@ public class PointRenderer : MonoBehaviour {
 
                                   						
 		}
-
 	}
 
     // creates particlePoints in the Particle System game object
