@@ -285,6 +285,7 @@ public class PointRenderer : MonoBehaviour {
             inputfile = button.updateCSV();
             UpdateVisualization(inputfile);
             GameObject.Find("Dataset_Label").GetComponent<TextMesh>().text = inputfile;
+            GameObject.Find("Point_Count").GetComponent<TextMesh>().text = pointList.Count.ToString("0");
             
             // panggil fungsi hapus visual lama
             // Destroy(dataPoint);
@@ -782,9 +783,14 @@ public class PointRenderer : MonoBehaviour {
         GameObject.Find("Y_Max_Lab").GetComponent<TextMesh>().text = yMax.ToString("0.0");
 
         // Set z Labels by finding game objects and setting TextMesh and assigning value (need to convert to string)
-        GameObject.Find("Z_Min_Lab").GetComponent<TextMesh>().text = zMin.ToString("0.0");
-        GameObject.Find("Z_Mid_Lab").GetComponent<TextMesh>().text = (zMin + (zMax - zMin) / 2f).ToString("0.0");
-        GameObject.Find("Z_Max_Lab").GetComponent<TextMesh>().text = zMax.ToString("0.0");
+        // GameObject.Find("Z_Min_Lab").GetComponent<TextMesh>().text = zMin.ToString("0.0");
+        // GameObject.Find("Z_Mid_Lab").GetComponent<TextMesh>().text = (zMin + (zMax - zMin) / 2f).ToString("0.0");
+        // GameObject.Find("Z_Max_Lab").GetComponent<TextMesh>().text = zMax.ToString("0.0");
+        GameObject.Find("Z_Min_Lab").GetComponent<TextMesh>().text = ("-3.801801");
+        GameObject.Find("Z_Mid_Lab").GetComponent<TextMesh>().text = ("-3.294.852");
+        GameObject.Find("Z_Max_Lab").GetComponent<TextMesh>().text = ("-2.787903");
+        // z1Max = 3.801801f;
+        // z1Min = 2.787903f;
                 
     }
 
