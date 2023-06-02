@@ -599,8 +599,13 @@ public class PointRenderer : MonoBehaviour {
                 //     t = t + 0.2f;
                 // }
 
-                if(((Math.Abs(x1-a1))>1.4978129999999998)|((Math.Abs(z1-c1))>2.476534))
+                // if((((Math.Abs(x1-a1))>1.4978129999999998f)||((Math.Abs(z1-c1))>2.476534f)))
+                if((((Math.Abs(x1-a1))>1.4978129999999998f)||((Math.Abs(z1-c1))>2.4765354f)))
+                // if((((Math.Abs(x1-a1))>1.4978129999999998)||((Math.Abs(z1-c1))>2.437452)))
+                // if((((Math.Abs(x1-a1))>1.4978129999999998f)))
                 {
+                    float testing = (Math.Abs(z1-c1));
+                    Debug.Log("ini bola yang ke-"+i+" z1-c1: "+testing);
                     // nilai t dari 3.5 jump ke >0.55
                     t = t + 0.2f;
                 }
