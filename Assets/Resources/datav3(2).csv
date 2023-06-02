@@ -1,0 +1,4 @@
+,maid,longitude,latitude,horizontal_accuracy,city_hasc,postcode,Date,Hour,count,Y,Color
+676616,datagempa,129.527,-3.568,0.0,-,-,16-06-21,13:43:00,1,10.0,red
+328806,06f512c297e16e81dd161979ac09545df0afeb34,128.19422,-3.6937,4.0,ID.MA.AM,97121.0,16-06-21,00:00:19,28,1.0,green
+91291,ec3518ed3c5deeeef8c1349a18ae6c847876bfdc,129.18097,-2.93942,110.0,ID.MA.MT,97544.0,16-06-21,00:09:28,661,1.0,green

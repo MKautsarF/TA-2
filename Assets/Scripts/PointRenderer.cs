@@ -179,33 +179,30 @@ public class PointRenderer : MonoBehaviour {
         // xMax = FindMaxValue(xColumnName);
         // yMax = FindMaxValue(yColumnName);
         // zMax = FindMaxValue(zColumnName);
-        xMax = 130.1502f;
-        yMax = 10;
 
-        // nilai x dan z dituker ya
-
-        // Get minimums of each axis, using FindMinValue method defined below
+        // // Get minimums of each axis, using FindMinValue method defined below
         // xMin = FindMinValue(xColumnName);
         // yMin = FindMinValue(yColumnName);
         // zMin = FindMinValue(zColumnName);
-        xMin = 127.9163f;
+        // z1Max = -(zMin);
+        // z1Min = -(zMax);
+
+        xMax = 130.885f;
+        yMax = 10;
+        xMin = 127.8626f;
         yMin = 1;
+        z1Max = 3.878415f;
+        z1Min = 2.787903f;
 
         pMax = FindMaxBgt();
         pMin = FindMinBgt();
 
         // karena tau semua altitude minus makan nilai yang menyimpan mereka dirubah 
         // note kalau misalnya altitude bukan di sumbu z lagi maka mohon disesuaikan
-        // z1Max = -(zMin);
-        // z1Min = -(zMax);
-        z1Max = 3.801801f;
-        z1Min = 2.787903f;
-
-        // Debug.Log(xMax);
-        // Debug.Log(xMin);
-        // Debug.Log(z1Max);
-        // Debug.Log(z1Min);
-        // Debug.Log(zMax);
+        // Debug.Log("xMax: " + xMax);
+        // Debug.Log("xMin: " + xMin);
+        // Debug.Log("z1Max: " + z1Max);
+        // Debug.Log("z1Min: " + z1Min);
 
         // Debug.Log(pMax);
         // Debug.Log(pMin);
@@ -397,7 +394,7 @@ public class PointRenderer : MonoBehaviour {
             if (myString==magicWords)
             // if (i==1)
             {
-                // Debug.Log(i);
+                Debug.Log("masuk ke mystring2");
                 
                 myString2 = myString;
                 // center = new Vector3(Convert.ToSingle(pointList[i][xColumnName]), Convert.ToSingle(pointList[i][yColumnName]), Convert.ToSingle(pointList[i][zColumnName]));
@@ -544,7 +541,10 @@ public class PointRenderer : MonoBehaviour {
             if (renderPrefabsWithColor == true)
             {
                 // Warnain gradasi
-                float radius = 8.585f;
+                // float radius = 8.858f;
+                // float radius = 7.079f;
+                float radius = 7.171842176271939f;
+                // float radius = 2.578f;
                 // float distance = 10;
                 // for ( int j = 0; j < pointList.Count; j++ )
                 // {
@@ -555,14 +555,14 @@ public class PointRenderer : MonoBehaviour {
                 // Debug.Log(panjang);
                 
                 // Debug.Log("ini a: "+a);
-                // float a1 = a * 10;
-                float a1 = 7.210207f;
+                float a1 = a * 10;
+                // float a1 = 7.210207f;
                 // Debug.Log("ini a1: "+a1);
                 float b1 = b * 10;
                 float x1 = x * 10;
                 float y1 = y * 10;
-                // float c1 = c * 10;
-                float c1 = 7.694039f;
+                float c1 = c * 10;
+                // float c1 = 7.694039f;
                 // Debug.Log("ini c1: "+c1);
                 float z1 = z * 10;
                     // Debug.Log(z);
@@ -577,11 +577,12 @@ public class PointRenderer : MonoBehaviour {
 
                     // Calculate the distance from the red center (point c)
                 // float distance = Vector3.Distance(position, center2);
-                // Debug.Log("(color) ini x1: "+x1);
-                // Debug.Log("(color) ini a1: "+a1);
-                // Debug.Log("(color) ini z1: "+z1);
-                // Debug.Log("(color) ini c1: "+c1);
+                Debug.Log("ini bola yang ke-"+i+"(color) ini x1: "+x1);
+                Debug.Log("(color) ini a1: "+a1);
+                Debug.Log("ini bola yang ke-"+i+"(color) ini z1: "+z1);
+                Debug.Log("(color) ini c1: "+c1);
                 float distance = Mathf.Sqrt( Mathf.Pow((x1-a1),2) + Mathf.Pow((z1-c1),2) ); 
+                Debug.Log("ini bola yang ke-"+i+" ini distancenya: "+distance);
                 // Debug.Log("ini bola ke-"+i+ "nilai distancenya: "+distance);
 
                 // if (distance > maxDistance){
@@ -591,8 +592,14 @@ public class PointRenderer : MonoBehaviour {
                 // Debug.Log(radius);
                      // Determine the color based on the distance from the red center
                 float t = Mathf.Clamp01(distance / radius);
-                // Debug.Log("ini t yang ke-"+i+ "nilai beforenya: "+t);
-                if (t>0.35)
+                Debug.Log("ini t yang ke-"+i+ "nilai beforenya: "+t);
+                // if (t>0.35)
+                // {
+                //     // nilai t dari 3.5 jump ke >0.55
+                //     t = t + 0.2f;
+                // }
+
+                if(((Math.Abs(x1-a1))>1.4978129999999998)|((Math.Abs(z1-c1))>2.476534))
                 {
                     // nilai t dari 3.5 jump ke >0.55
                     t = t + 0.2f;
@@ -618,10 +625,12 @@ public class PointRenderer : MonoBehaviour {
                 }
 
                 // 0.3f <= t <= 0.35 --> 0.3f
-                else if( (t>=0.3f) & (t<0.35f) )
+                else if( (t>=0.3f) & (t<=0.35f) )
                 {
                     t = 0.3f;
                 }
+
+                // batas zona merah
 
                 // 0.55 <= t < 0.6 --> 0.55
                 else if( (t>=0.55f) & (t<0.6f) )
@@ -658,12 +667,12 @@ public class PointRenderer : MonoBehaviour {
                 {
                     t = 1;
                 }
-                // Debug.Log("ini t yang ke-"+i+ " nilai afternya: "+t);
+                Debug.Log("ini t yang ke-"+i+ " nilai afternya: "+t);
 
                 // Debug.Log(t + " ini bola ke: "+i);
                 int index = button.getIndex();
-                if ((index>=13)&(index<=19))
-                // if (found==true) 
+                // if ((index>=13)&(index<=19))
+                if (found==true) 
                 {
                     Debug.Log("berhasil masuk");
                     color = Color.Lerp(Color.red, Color.green, t);
