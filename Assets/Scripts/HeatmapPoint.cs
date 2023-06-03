@@ -97,7 +97,7 @@ public class HeatmapPoint : MonoBehaviour
 
             jarakGempa = distanceGempa(i);
             // Set the text content of the label
-            label.text = "< " + jarakGempa + " km";
+            label.text = "<= " + jarakGempa + " km";
 
             // Set the position of the label
             Vector3 position = new Vector3(x, y, z) * heatmapScale;
@@ -125,8 +125,35 @@ public class HeatmapPoint : MonoBehaviour
         float distance;
         switch (number)
         {
+            case 0:
+                distance = 0;
+                break;
+            case 1:
+                distance = 12.361f;
+                break;
+            case 2:
+                distance = 52.823f;
+                break;
             case 3:
-                distance = 60.521f;
+                distance = 58.571f;
+                break;
+            case 4:
+                distance = 96.281f;
+                break;
+            case 5:
+                distance = 119.29f;
+                break;
+            case 6:
+                distance = 142.923f;
+                break;
+            case 7:
+                distance = 162.663f;
+                break;
+            case 8:
+                distance = 175.938f;
+                break;
+            case 9:
+                distance = 204.24f;
                 break;
             default:
                 distance = number;

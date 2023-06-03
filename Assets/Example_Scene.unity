@@ -3580,7 +3580,7 @@ MonoBehaviour:
   renderPointPrefabs: 1
   renderParticles: 0
   renderPrefabsWithColor: 1
-  inputfile: datav4_13
+  inputfile: datav3
   column1: 2
   column2: 10
   column3: 3

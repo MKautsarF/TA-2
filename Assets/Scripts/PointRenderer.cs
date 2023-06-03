@@ -592,7 +592,7 @@ public class PointRenderer : MonoBehaviour {
                 // Debug.Log(radius);
                      // Determine the color based on the distance from the red center
                 float t = Mathf.Clamp01(distance / radius);
-                Debug.Log("ini t yang ke-"+i+ "nilai beforenya: "+t);
+                Debug.Log("ini t yang ke-"+i+ "nilai-1: "+t);
                 // if (t>0.35)
                 // {
                 //     // nilai t dari 3.5 jump ke >0.55
@@ -609,6 +609,7 @@ public class PointRenderer : MonoBehaviour {
                     // nilai t dari 3.5 jump ke >0.55
                     t = t + 0.2f;
                 }
+                Debug.Log("ini t yang ke-"+i+ "nilai-2: "+t);
 
                 // bikin pembulatan t disini
                 // 0 <= t < 0.1 --> 0
@@ -672,27 +673,64 @@ public class PointRenderer : MonoBehaviour {
                 {
                     t = 1;
                 }
-                Debug.Log("ini t yang ke-"+i+ " nilai afternya: "+t);
+                Debug.Log("ini t yang ke-"+i+ "nilai-3: "+t);
 
                 // Debug.Log(t + " ini bola ke: "+i);
                 int index = button.getIndex();
-                if ((index>=13)&(index<=19))
-                // if (found==true) 
-                {
-                    Debug.Log("berhasil masuk");
-                    color = Color.Lerp(Color.red, Color.green, t);
-                    // tinggiY = getPointY();
-                    // Debug.Log("ini bola ke: "+dataPointName+" dan ini posisi nya: "+tinggiY);
-                    // Debug.Log(distance);
-                    // Debug.Log(t + " ini bola ke: "+dataPointName);
-                    // trigger.OnTriggerStay(dataPoint.GetComponent<Collider>());
-                    // posisi = logic.getLokasi();
-                    // Debug.Log("ini bola ke: "+dataPointName+" dengan posisi di: "+posisi);
-                    
+                string beforeUnderscoreStr = button.getbeforeUnderscoreStr();
+                // if ((index>=13)&(index<=19))
+                // if ((index>=26)&(index<=39))
+                if(index == 99){
+                    if (found==true) 
+                    {
+                        // Debug.Log("berhasil masuk");
+                        color = Color.Lerp(Color.red, Color.green, t);
+                        // tinggiY = getPointY();
+                        // Debug.Log("ini bola ke: "+dataPointName+" dan ini posisi nya: "+tinggiY);
+                        // Debug.Log(distance);
+                        // Debug.Log(t + " ini bola ke: "+dataPointName);
+                        // trigger.OnTriggerStay(dataPoint.GetComponent<Collider>());
+                        // posisi = logic.getLokasi();
+                        // Debug.Log("ini bola ke: "+dataPointName+" dengan posisi di: "+posisi);
+                        
+                    }
+                    // else if(found==false)
+                    else
+                    {
+                        color = Color.green;
+                    }
                 }
-                else if(found==false)
+                else if(index != 99)
                 {
-                    color = Color.green;
+                    if(beforeUnderscoreStr=="3")
+                    {
+                        if ((index>=13)&(index<=19))
+                        {
+                            // Debug.Log("berhasil masuk");
+                            color = Color.Lerp(Color.red, Color.green, t);
+                        }
+                    
+                        else
+                        {
+                            color = Color.green;
+                        }
+
+                    }
+                    
+                    else if(beforeUnderscoreStr=="4")
+                    {
+                        if ((index>=27)&(index<=39))
+                        {
+                            // Debug.Log("berhasil masuk");
+                            color = Color.Lerp(Color.red, Color.green, t);
+                        }
+                    
+                        else
+                        {
+                            color = Color.green;
+                        }
+
+                    }
                 }
                     
                     // Sets color according to x/y/z value

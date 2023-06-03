@@ -17,7 +17,7 @@ public class buttonReader : MonoBehaviour
 
     public PointRenderer point;
 
-    int index;
+    int index = 99;
     string baseFileName;
     int underscoreIndex;
     int beforeUnderscoreIndex;
@@ -30,12 +30,12 @@ public class buttonReader : MonoBehaviour
 
         // Split the fileName into index and baseFileName
         underscoreIndex = fileName.LastIndexOf('_');
-        beforeUnderscoreIndex = underscoreIndex - 1;
-        beforeUnderscoreStr = fileName.Substring(beforeUnderscoreIndex, 1);
         // Debug.Log(beforeUnderscoreIndex);
         // Debug.Log(beforeUnderscoreStr);
         if (underscoreIndex >= 0)
         {
+            beforeUnderscoreIndex = underscoreIndex - 1;
+            beforeUnderscoreStr = fileName.Substring(beforeUnderscoreIndex, 1);
             // Get the substring starting from the character after the last underscore
             string indexStr = fileName.Substring(underscoreIndex + 1);
 
@@ -67,6 +67,11 @@ public class buttonReader : MonoBehaviour
     public int getIndex()
     {
         return index;
+    }
+    
+    public string getbeforeUnderscoreStr()
+    {
+        return beforeUnderscoreStr;
     }
 
     public void ReadNextCSVFile()
