@@ -676,8 +676,8 @@ public class PointRenderer : MonoBehaviour {
 
                 // Debug.Log(t + " ini bola ke: "+i);
                 int index = button.getIndex();
-                // if ((index>=13)&(index<=19))
-                if (found==true) 
+                if ((index>=13)&(index<=19))
+                // if (found==true) 
                 {
                     Debug.Log("berhasil masuk");
                     color = Color.Lerp(Color.red, Color.green, t);
