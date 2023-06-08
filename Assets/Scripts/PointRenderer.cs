@@ -529,7 +529,7 @@ public class PointRenderer : MonoBehaviour {
                 PlacePrefabGempa();
             }
             addBalls();
-            // countBalls();
+            countBalls();
             // Debug.Log("masuk ganti csv-2");
         }
         //Activate Particle System

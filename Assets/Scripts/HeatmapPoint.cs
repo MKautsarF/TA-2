@@ -99,6 +99,7 @@ public class HeatmapPoint : MonoBehaviour
             // Create a new label GameObject
             labelObject2 = new GameObject("Label");
             // GameObject label_2Object = new GameObject("Label-2");
+            listLabel2.Add(labelObject2);
 
             // Add a TextMeshPro component to the label GameObject
             label2 = labelObject2.AddComponent<TextMeshPro>();
@@ -232,15 +233,32 @@ public class HeatmapPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(listCount != point.getBalls())
+        // RemoveLabels2();
+        listCount2 = point.getCount();
+        PlaceLabels2();
+        // if(listCount2 != point.getCount())
         // {
-        //     listCount.Clear();
-        //     foreach (var labelObject2 in listLabel2)
+        //     listCount2.Clear();
+        //     i = 0;
+        //     for (int ixx=0; ixx<10;ixx++)
         //     {
         //         Destroy(labelObject2);
+        //         Destroy(label2);
         //     }
-        //     listCount = point.getBalls();
+        //     // foreach (var labelObject2 in listLabel2)
+        //     // {
+        //     //     Destroy(labelObject2);
+        //     // }
+        //     listCount2 = point.getCount();
         //     PlaceLabels2();
         // }
+    }
+
+    void RemoveLabels2()
+    {
+        foreach (Transform child in infoLabel.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }
