@@ -112,6 +112,7 @@ public class PointRenderer : MonoBehaviour {
     public List<Dictionary<string, object>> pointList;
     public List<GameObject> dPoints = new List<GameObject>();
     public List<GameObject> dGempa = new List<GameObject>();
+    public List<int> countTotal = new List<int>();
 
     // Particle system for holding point particles
     private ParticleSystem.Particle[] particlePoints; 
@@ -123,6 +124,20 @@ public class PointRenderer : MonoBehaviour {
     public float tinggiY;
 
     public buttonReader button;
+    public int count0;
+    public int count1;
+    public int count2;
+    public int count3;
+    public int count4;
+    public int count5;
+    public int count6;
+    public int count7;
+    public int count8;
+    public int count9;
+
+    string dateColumnName;
+    string date;
+    // public List<string> columnList;
 
 
     //********Methods********
@@ -145,6 +160,7 @@ public class PointRenderer : MonoBehaviour {
         //Debug.Log(pointList);
         // Store dictionary keys (column names in CSV) in a list
         List<string> columnList = new List<string>(pointList[1].Keys);
+        // columnList = new List<string>(pointList[1].Keys);
 
         Debug.Log("There are " + columnList.Count + " columns in the CSV");
         //Debug.Log(columnList);
@@ -174,7 +190,9 @@ public class PointRenderer : MonoBehaviour {
         yColumnName = columnList[column2];
         zColumnName = columnList[column3];
         aColumnName = columnList[column4];
-        
+
+        // dateColumnName = columnList[7];
+        Debug.Log(aColumnName);
         // Get maxes of each axis, using FindMaxValue method defined below
         // xMax = FindMaxValue(xColumnName);
         // yMax = FindMaxValue(yColumnName);
@@ -223,6 +241,8 @@ public class PointRenderer : MonoBehaviour {
                 PlacePrefabGempa();
                 // Debug.Log(dGempa.Count);
             }
+            addBalls();
+            countBalls();
             // for (var i = 0; i < pointList.Count; i++)
             // {
                 // if ((pointList[i][aColumnName] == magicWords))
@@ -260,6 +280,62 @@ public class PointRenderer : MonoBehaviour {
         }
                                 
     }
+
+
+    void addBalls()
+    {
+        countTotal.Add(count0);
+        countTotal.Add(count1);
+        countTotal.Add(count2);
+        countTotal.Add(count3);
+        countTotal.Add(count4);
+        countTotal.Add(count5);
+        countTotal.Add(count6);
+        countTotal.Add(count7);
+        countTotal.Add(count8);
+        countTotal.Add(count9);
+    }
+
+    public List<int> getCount()
+    {
+        // int totalC = count0 + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9; 
+        // buat ngecek value masing2 count
+        // for (int ix = 0; ix < countTotal.Count; ix++)
+        // {
+        //     Debug.Log("Count"+ix+": "+countTotal[ix]);
+        // }
+        // Debug.Log(totalC);
+        // addBalls();
+        return countTotal;
+
+    }
+
+    void countBalls()
+    {
+        int totalC = count0 + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9; 
+        // buat ngecek value masing2 count
+        List<int> CEK = getCount();
+        for (int ix = 0; ix < CEK.Count; ix++)
+        {
+            Debug.Log("Count"+ix+": "+CEK[ix]);
+        }
+        Debug.Log("ini totalC: "+totalC);
+        Debug.Log("ini countTotal.Count: "+CEK.Count);
+    }
+
+    void Reset()
+    {
+        count0 = 0;
+        count1 = 0;
+        count2 = 0;
+        count3 = 0;
+        count4 = 0;
+        count5 = 0;
+        count6 = 0;
+        count7 = 0;
+        count8 = 0;
+        count9 = 0;
+    }
     
 		
 	// Update is called once per frame
@@ -279,6 +355,7 @@ public class PointRenderer : MonoBehaviour {
         if(inputfile != button.updateCSV())
         {
             // pointList = CSVReader.Read(button.updateCSV());
+            Reset();
             inputfile = button.updateCSV();
             UpdateVisualization(inputfile);
             GameObject.Find("Dataset_Label").GetComponent<TextMesh>().text = inputfile;
@@ -315,7 +392,7 @@ public class PointRenderer : MonoBehaviour {
                 Destroy(dataPoint);
             }
             dPoints.Clear();
-            Debug.Log(myString2);
+            // Debug.Log(myString2);
 
             foreach (var gempaPoint in dGempa)
             {
@@ -329,6 +406,8 @@ public class PointRenderer : MonoBehaviour {
             {
                 PlacePrefabGempa();
             }
+            addBalls();
+            // countBalls();
             // Debug.Log("masuk ganti csv-2");
         }
         //Activate Particle System
@@ -381,6 +460,10 @@ public class PointRenderer : MonoBehaviour {
         // bool found2 = false;
         // Get count (number of rows in table)
         Debug.Log(rowCount);
+        
+        dateColumnName = "Date";
+        date = ((pointList[1][dateColumnName])).ToString();
+        // Debug.Log("INI BRO "+date);
 
                 for (var i = 0; i < rowCount; i++)
         {
@@ -432,6 +515,7 @@ public class PointRenderer : MonoBehaviour {
                 // Debug.Log(myString2);
                 // Debug.Log("ketemu nih"); 
                 i++;
+                count0++;
             }
             if((i == rowCount-1)&(found==false))
             {
@@ -556,13 +640,13 @@ public class PointRenderer : MonoBehaviour {
                 
                 // Debug.Log("ini a: "+a);
                 float a1 = a * 10;
-                // float a1 = 7.210207f;
+                // float a1 = 5.506865f;
                 // Debug.Log("ini a1: "+a1);
                 float b1 = b * 10;
                 float x1 = x * 10;
                 float y1 = y * 10;
                 float c1 = c * 10;
-                // float c1 = 7.694039f;
+                // float c1 = 7.153492f;
                 // Debug.Log("ini c1: "+c1);
                 float z1 = z * 10;
                     // Debug.Log(z);
@@ -616,68 +700,95 @@ public class PointRenderer : MonoBehaviour {
                 if( (t>=0) & (t<0.1f) )
                 {
                     t = 0;
+                    count0++;
                 }
 
-                // 0.1 <= t < 0.2 --> 0.1
+                // 0.1 <= t < 0.2 --> 0.1 - 1
                 else if( (t>=0.1f) & (t<0.2f) )
                 {
                     t = 0.1f;
+                    count1++;
                 }
 
-                // 0.2f <= t < 0.3 --> 0.2f
+                // 0.2f <= t < 0.3 --> 0.2f - 2
                 else if( (t>=0.2f) & (t<0.3f) )
                 {
                     t = 0.2f;
+                    count2++;
                 }
 
-                // 0.3f <= t <= 0.35 --> 0.3f
+                // 0.3f <= t <= 0.35 --> 0.3f - 3
                 else if( (t>=0.3f) & (t<=0.35f) )
                 {
                     t = 0.3f;
+                    count3++;
                 }
 
                 // batas zona merah
 
-                // 0.55 <= t < 0.6 --> 0.55
-                else if( (t>=0.55f) & (t<0.6f) )
+                // 0.55 <= t < 0.6 --> 0.55 -4
+                else if( (t>=0.35f) & (t<0.6f) )
                 {
                     t = 0.55f;
+                    count4++;
                 }
 
-                // 0.6f <= t < 0.7 --> 0.6f
+                // 0.6f <= t < 0.7 --> 0.6f -5
                 else if( (t>=0.6f) & (t<0.7f) )
                 {
                     t = 0.6f;
+                    count5++;
                 }
 
-                // 0.7f <= t < 0.8 --> 0.7f
+                // 0.7f <= t < 0.8 --> 0.7f -6
                 else if( (t>=0.7f) & (t<0.8f) )
                 {
                     t = 0.7f;
+                    count6++;
                 }
 
                 // 0.8f <= t < 0.9 --> 0.8f
                 else if( (t>=0.8f) & (t<0.9f) )
                 {
                     t = 0.8f;
+                    count7++;
                 }
 
                 // 0.9f <= t < 1 --> 9f
                 else if( (t>=0.9f) & (t<1) )
                 {
                     t = 0.9f;
+                    count8++;
                 }
 
                 // t = 1 --> 1
                 else if( (t>=1) )
                 {
                     t = 1;
+                    count9++;
                 }
+                
+                // Debug.Log("ini count0: "+count0);
+                // Debug.Log("ini count1: "+count1);
+                // Debug.Log("ini count2: "+count2);
+                // Debug.Log("ini count3: "+count3);
+                // Debug.Log("ini count4: "+count4);
+                // Debug.Log("ini count5: "+count5);
+                // Debug.Log("ini count6: "+count6);
+                // Debug.Log("ini count7: "+count7);
+                // Debug.Log("ini count8: "+count8);
+                // Debug.Log("ini count9: "+count9);
+                // int totalC = count0 + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9; 
+                // Debug.Log("ini total count: "+ totalC);
+
+                
+
                 Debug.Log("ini t yang ke-"+i+ "nilai-3: "+t);
 
                 // Debug.Log(t + " ini bola ke: "+i);
                 int index = button.getIndex();
                 string beforeUnderscoreStr = button.getbeforeUnderscoreStr();
+                // Debug.Log(index);   
                 // if ((index>=13)&(index<=19))
                 // if ((index>=26)&(index<=39))
                 if(index == 99){
@@ -776,6 +887,11 @@ public class PointRenderer : MonoBehaviour {
                                   						
 		}
 	}
+
+    public string getDate()
+    {
+        return date;
+    }
 
     // creates particlePoints in the Particle System game object
     // 

@@ -13,6 +13,12 @@ public class HeatmapPoint : MonoBehaviour
     public GameObject infoLabel;
     public int heatMapScale = 1;
     public float miniScale = 0.1f;
+    public PointRenderer point;
+    public List<int> listCount2;
+    List<GameObject> listLabel2 = new List<GameObject>();
+    GameObject labelObject2;
+    TextMeshPro label2;
+
 
     int i;
 
@@ -21,9 +27,12 @@ public class HeatmapPoint : MonoBehaviour
     {
 
         if (renderHeatmapPrefabs == true)
-        {
+        {            
+            listCount2 = point.getCount();
+            Debug.Log("INI BRO: "+listCount2.Count);
             PlaceHeatmapPoints();
             PlaceLabels();
+            PlaceLabels2();
         }
     }
 
@@ -79,6 +88,54 @@ public class HeatmapPoint : MonoBehaviour
         }
     }
 
+    private void PlaceLabels2()
+    {
+        float x = 2.25f;
+        float y = 2.5f;
+        float z = 4;
+        float labelWidth = 25;
+        for (int i = 0; i < 10; i++)
+        {
+            // Create a new label GameObject
+            labelObject2 = new GameObject("Label");
+            // GameObject label_2Object = new GameObject("Label-2");
+
+            // Add a TextMeshPro component to the label GameObject
+            label2 = labelObject2.AddComponent<TextMeshPro>();
+            // TextMeshPro label_2 = label_2Object.AddComponent<TextMeshPro>();
+
+            // Set the text content of the label
+            label2.text = "<= " + " km";
+            // label_2.text = "count"+i+": "+countTotal[i];
+
+            // Set the position of the label
+            Vector3 position = new Vector3(x, y, z) * heatmapScale;
+            label2.transform.position = position;
+
+            // y1 = y - 2;
+            // Vector3 position2 = new Vector3(x, y1, z) * heatmapScale;
+            // label_2.transform.position = position2;
+
+            // Set the parent of the label GameObject
+            label2.transform.SetParent(infoLabel.transform);
+            // label_2.transform.SetParent(infoLabel.transform);
+
+            // Customize the scale
+            Vector3 scale = new Vector3(miniScale, miniScale, miniScale); 
+
+            // Set the scale of the label
+            label2.transform.localScale = scale;
+            // label_2.transform.localScale = scale;
+
+            // Set the width of the label
+            label2.rectTransform.sizeDelta = new Vector2(labelWidth, label2.rectTransform.sizeDelta.y);
+            // label_2.rectTransform.sizeDelta = new Vector2(labelWidth, label.rectTransform.sizeDelta.y);
+            
+            // Increment the position values
+            x += 2;
+        }
+    }
+
     private void PlaceLabels()
     {
         float x = 2.25f;
@@ -91,29 +148,39 @@ public class HeatmapPoint : MonoBehaviour
         {
             // Create a new label GameObject
             GameObject labelObject = new GameObject("Label");
+            // GameObject label_2Object = new GameObject("Label-2");
 
             // Add a TextMeshPro component to the label GameObject
             TextMeshPro label = labelObject.AddComponent<TextMeshPro>();
+            // TextMeshPro label_2 = label_2Object.AddComponent<TextMeshPro>();
 
             jarakGempa = distanceGempa(i);
             // Set the text content of the label
             label.text = "<= " + jarakGempa + " km";
+            // label_2.text = "count"+i+": "+countTotal[i];
 
             // Set the position of the label
             Vector3 position = new Vector3(x, y, z) * heatmapScale;
             label.transform.position = position;
 
+            // y1 = y - 2;
+            // Vector3 position2 = new Vector3(x, y1, z) * heatmapScale;
+            // label_2.transform.position = position2;
+
             // Set the parent of the label GameObject
             label.transform.SetParent(infoLabel.transform);
+            // label_2.transform.SetParent(infoLabel.transform);
 
             // Customize the scale
             Vector3 scale = new Vector3(miniScale, miniScale, miniScale); 
 
             // Set the scale of the label
             label.transform.localScale = scale;
+            // label_2.transform.localScale = scale;
 
             // Set the width of the label
             label.rectTransform.sizeDelta = new Vector2(labelWidth, label.rectTransform.sizeDelta.y);
+            // label_2.rectTransform.sizeDelta = new Vector2(labelWidth, label.rectTransform.sizeDelta.y);
             
             // Increment the position values
             x += 2;
@@ -165,6 +232,15 @@ public class HeatmapPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // if(listCount != point.getBalls())
+        // {
+        //     listCount.Clear();
+        //     foreach (var labelObject2 in listLabel2)
+        //     {
+        //         Destroy(labelObject2);
+        //     }
+        //     listCount = point.getBalls();
+        //     PlaceLabels2();
+        // }
     }
 }

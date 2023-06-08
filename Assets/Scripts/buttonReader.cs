@@ -8,6 +8,7 @@ public class buttonReader : MonoBehaviour
 {
 
     public Text bText;
+    public Text dateText;
     int counter;
 
     // private int fileIndex = 0;
@@ -23,10 +24,15 @@ public class buttonReader : MonoBehaviour
     int beforeUnderscoreIndex;
     string beforeUnderscoreStr;
     string periode;
+    // public string ColumnName;
+    string dateT;
+    bool found = false;
 
     void Awake()
     {
-        fileName = point.inputFile();
+        fileName = point.inputFile();        
+        // ColumnName = point.columnList[7];
+        // Debug.Log("INI BRO: "+ColumnName);
 
         // Split the fileName into index and baseFileName
         underscoreIndex = fileName.LastIndexOf('_');
@@ -61,6 +67,7 @@ public class buttonReader : MonoBehaviour
         // Debug.Log("index: " + index);
         // Debug.Log("baseFileName: " + baseFileName);
         // bText.text = fileName;
+
 
     }
 
@@ -151,7 +158,6 @@ public class buttonReader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -355,6 +361,13 @@ public class buttonReader : MonoBehaviour
         }
         bText.text = periode;
         // point.pointList = dataList;
+        if(found == false )
+        {
+            dateT = point.getDate();
+            // Debug.Log("INI BRO: "+dateT);
+            dateText.text = dateT;
+            found = true;
+        }
     }
 
     // public List<Dictionary<string, object>> updateCSV()
