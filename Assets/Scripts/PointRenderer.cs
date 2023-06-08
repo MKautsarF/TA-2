@@ -151,12 +151,7 @@ public class PointRenderer : MonoBehaviour {
         //Run CSV Reader
         // pointList = CSVReader.Read(inputfile);
         UpdateVisualization(inputfile);
-    }
-
-    // Use this for initialization
-    void Start () 
-	{
-        
+        // addBalls();
         //Debug.Log(pointList);
         // Store dictionary keys (column names in CSV) in a list
         List<string> columnList = new List<string>(pointList[1].Keys);
@@ -278,6 +273,133 @@ public class PointRenderer : MonoBehaviour {
             // Set particle system, for point glow- depends on CreateParticles()
             GetComponent<ParticleSystem>().SetParticles(particlePoints, particlePoints.Length);
         }
+    }
+
+    // Use this for initialization
+    void Start () 
+	{
+        
+        // //Debug.Log(pointList);
+        // // Store dictionary keys (column names in CSV) in a list
+        // List<string> columnList = new List<string>(pointList[1].Keys);
+        // // columnList = new List<string>(pointList[1].Keys);
+
+        // Debug.Log("There are " + columnList.Count + " columns in the CSV");
+        // //Debug.Log(columnList);
+
+        // foreach (string key in columnList)
+        //     Debug.Log("Column name is " + key);
+
+        // // string myString = "Sepal.Length";
+        // // string myString2 = "Sepal.Length";
+
+        // // if (myString == myString2) 
+        // // {
+        // //     Debug.Log("The string is 'Hello'.");
+        // // } 
+        // // else if (myString == "World") 
+        // // {
+        // //     Debug.Log("The string is 'World'.");
+        // // } 
+        // // else 
+        // // {
+        // //     Debug.Log("The string is something else.");
+        // // }
+
+
+        // // Assign column names according to index indicated in columnList
+        // xColumnName = columnList[column1];
+        // yColumnName = columnList[column2];
+        // zColumnName = columnList[column3];
+        // aColumnName = columnList[column4];
+
+        // // dateColumnName = columnList[7];
+        // Debug.Log(aColumnName);
+        // // Get maxes of each axis, using FindMaxValue method defined below
+        // // xMax = FindMaxValue(xColumnName);
+        // // yMax = FindMaxValue(yColumnName);
+        // // zMax = FindMaxValue(zColumnName);
+
+        // // // Get minimums of each axis, using FindMinValue method defined below
+        // // xMin = FindMinValue(xColumnName);
+        // // yMin = FindMinValue(yColumnName);
+        // // zMin = FindMinValue(zColumnName);
+        // // z1Max = -(zMin);
+        // // z1Min = -(zMax);
+
+        // xMax = 130.885f;
+        // yMax = 10;
+        // xMin = 127.8626f;
+        // yMin = 1;
+        // z1Max = 3.878415f;
+        // z1Min = 2.787903f;
+
+        // pMax = FindMaxBgt();
+        // pMin = FindMinBgt();
+
+        // // karena tau semua altitude minus makan nilai yang menyimpan mereka dirubah 
+        // // note kalau misalnya altitude bukan di sumbu z lagi maka mohon disesuaikan
+        // // Debug.Log("xMax: " + xMax);
+        // // Debug.Log("xMin: " + xMin);
+        // // Debug.Log("z1Max: " + z1Max);
+        // // Debug.Log("z1Min: " + z1Min);
+
+        // // Debug.Log(pMax);
+        // // Debug.Log(pMin);
+            
+        // // Debug.Log(xMin + " " + yMin + " " + zMin); // Write to console
+
+        // AssignLabels();
+
+        // if (renderPointPrefabs == true)
+        // {
+        //     // int cek = 0;
+        //     // bool found = false;
+        //     // Call PlacePoint methods defined below
+        //     PlacePrefabPoints();
+        //     // Debug.Log(dPoints);
+        //     if (myString2 != null)
+        //     {
+        //         PlacePrefabGempa();
+        //         // Debug.Log(dGempa.Count);
+        //     }
+        //     addBalls();
+        //     countBalls();
+        //     // for (var i = 0; i < pointList.Count; i++)
+        //     // {
+        //         // if ((pointList[i][aColumnName] == magicWords))
+        //         // {
+        //             // PlacePrefabGempa();
+        //             // found = true;
+        //             // cek=cek+1
+        //         // }
+        //             // while( found != true )
+        //             // {
+        //             //     if (pointList[i][aColumnName] == magicWords)
+        //             //     {
+        //             //         // PlacePrefabGempa();
+        //             //         found = true;
+        //             //         cek=cek+1;   
+        //             //     }
+        //             //     // found = false;
+        //             // }
+                    
+        //         // PlacePrefabPoints();
+        //         // cek=cek+1;   
+        //     // }
+
+        // }            
+                    
+
+        // // If statement to turn particles on and off
+        // if ( renderParticles == true)
+        // {
+        //     // Call CreateParticles() for particle system
+        //     CreateParticles();
+
+        //     // Set particle system, for point glow- depends on CreateParticles()
+        //     GetComponent<ParticleSystem>().SetParticles(particlePoints, particlePoints.Length);
+        // }
                                 
     }
 
@@ -886,6 +1008,7 @@ public class PointRenderer : MonoBehaviour {
 
                                   						
 		}
+        // addBalls();
 	}
 
     public string getDate()

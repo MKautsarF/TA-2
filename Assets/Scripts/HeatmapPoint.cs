@@ -94,7 +94,7 @@ public class HeatmapPoint : MonoBehaviour
         float y = 2.5f;
         float z = 4;
         float labelWidth = 25;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < listCount2.Count; i++)
         {
             // Create a new label GameObject
             labelObject2 = new GameObject("Label");
@@ -105,7 +105,7 @@ public class HeatmapPoint : MonoBehaviour
             // TextMeshPro label_2 = label_2Object.AddComponent<TextMeshPro>();
 
             // Set the text content of the label
-            label2.text = "<= " + " km";
+            label2.text = "Jumlah: " + listCount2[i];
             // label_2.text = "count"+i+": "+countTotal[i];
 
             // Set the position of the label
