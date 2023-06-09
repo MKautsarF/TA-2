@@ -233,9 +233,12 @@ public class HeatmapPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // RemoveLabels2();
-        listCount2 = point.getCount();
-        PlaceLabels2();
+        if(listCount2 != point.getCount())
+        {
+            RemoveLabels2();
+            listCount2 = point.getCount();
+            PlaceLabels2();
+        }
         // if(listCount2 != point.getCount())
         // {
         //     listCount2.Clear();
@@ -256,9 +259,16 @@ public class HeatmapPoint : MonoBehaviour
 
     void RemoveLabels2()
     {
-        foreach (Transform child in infoLabel.transform)
+        // foreach (Transform child in infoLabel.transform)
+        // {
+        //     Destroy(child.gameObject);
+        // }
+        foreach(var labelObject2 in listLabel2)
         {
-            Destroy(child.gameObject);
+            Destroy(labelObject2);
+            Destroy(label2);
         }
+        listLabel2.Clear();
+
     }
 }
