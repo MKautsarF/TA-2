@@ -2164,7 +2164,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: dd-mm-yyyy
+  m_Text: dd-mm-yy
 --- !u!222 &989135289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2324,6 +2324,7 @@ MonoBehaviour:
   miniScale: 0.05
   point: {fileID: 1825003054}
   listCount2: 
+  listLabel2: []
 --- !u!1 &1025394426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721959351}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -1.9, y: 49, z: 0.7}
+  m_LocalPosition: {x: -1.9, y: 49.5, z: 0.7}
   m_LocalScale: {x: 0.8225, y: 0.5, z: 0.295}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3676,7 +3677,7 @@ MonoBehaviour:
   aColumnName: 
   gempaScale: 100
   pointScale: 0.5
-  pointGempaScale: 0.5
+  pointGempaScale: 1
   particleScale: 2
   PointPrefab: {fileID: 1103527760695654, guid: f651331ec8b2b0d43abf2f06b702bd1f, type: 3}
   GempaPrefab: {fileID: 1103527760695654, guid: 175a7b32d0b14064fbdbdbefe0eaa5d9, type: 3}
@@ -3692,16 +3693,8 @@ MonoBehaviour:
   trigger: {fileID: 306414402}
   tinggiY: 0
   button: {fileID: 43777462}
-  count0: 0
-  count1: 0
-  count2: 0
-  count3: 0
-  count4: 0
-  count5: 0
-  count6: 0
-  count7: 0
-  count8: 0
-  count9: 0
+  plegend: {fileID: 1018702960}
+  legendList: 
 --- !u!199 &1825003055
 ParticleSystemRenderer:
   serializedVersion: 6

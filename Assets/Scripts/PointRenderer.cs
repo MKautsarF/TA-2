@@ -60,7 +60,7 @@ public class PointRenderer : MonoBehaviour {
     public float pointScale = 0.25f;
     
     // Scale of the prefab particlePoints
-    [Range(0.0f, 0.5f)]
+    [Range(0.0f, 5.5f)]
     public float pointGempaScale = 0.25f;
 
 
@@ -124,19 +124,22 @@ public class PointRenderer : MonoBehaviour {
     public float tinggiY;
 
     public buttonReader button;
-    public int count0;
-    public int count1;
-    public int count2;
-    public int count3;
-    public int count4;
-    public int count5;
-    public int count6;
-    public int count7;
-    public int count8;
-    public int count9;
+    int count0;
+    int count1;
+    int count2;
+    int count3;
+    int count4;
+    int count5;
+    int count6;
+    int count7;
+    int count8;
+    int count9;
 
     string dateColumnName;
     string date;
+
+    public PointLegends plegend;
+    public List<int> legendList = new List<int>();
     // public List<string> columnList;
 
 
@@ -273,12 +276,15 @@ public class PointRenderer : MonoBehaviour {
             // Set particle system, for point glow- depends on CreateParticles()
             GetComponent<ParticleSystem>().SetParticles(particlePoints, particlePoints.Length);
         }
+        
+        
     }
 
     // Use this for initialization
     void Start () 
 	{
-        
+        // legendList = plegend.listCount2;
+        plegend.PlaceLabels2(countTotal);
         // //Debug.Log(pointList);
         // // Store dictionary keys (column names in CSV) in a list
         // List<string> columnList = new List<string>(pointList[1].Keys);
@@ -464,15 +470,31 @@ public class PointRenderer : MonoBehaviour {
 	void Update ()
     {
         // Debug.Log("masuk ganti csv-1");
-        if(Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKey(KeyCode.RightArrow))
         {
             button.ReadNextCSVFile();
+
+            // plegend.RemoveLabels2();
+            // //legendList = plegend.getListCount();
+            // plegend.PlaceLabels2(countTotal);
         }
         
-        else if(Input.GetKey(KeyCode.DownArrow))
+        else if(Input.GetKey(KeyCode.LeftArrow))
         {
             button.ReadPreviousCSVFile();
+
+            // plegend.RemoveLabels2();
+            // //legendList = plegend.getListCount();
+            // plegend.PlaceLabels2(countTotal);
         }
+        // if((Input.GetKey(KeyCode.DownArrow))||(Input.GetKey(KeyCode.UpArrow)))
+        // {
+        //     plegend.RemoveLabels2();
+        //     List<int> listlist = plegend.getListCount();
+        //     plegend.PlaceLabels2(listlist);
+
+        // }
+
 
         if(inputfile != button.updateCSV())
         {
@@ -528,8 +550,11 @@ public class PointRenderer : MonoBehaviour {
             {
                 PlacePrefabGempa();
             }
+            plegend.RemoveLabels2();
             addBalls();
             countBalls();
+            // legendList = plegend.getListCount();
+            plegend.PlaceLabels2(countTotal);
             // Debug.Log("masuk ganti csv-2");
         }
         //Activate Particle System
@@ -583,8 +608,8 @@ public class PointRenderer : MonoBehaviour {
         // Get count (number of rows in table)
         Debug.Log(rowCount);
         
-        dateColumnName = "Date";
-        date = ((pointList[1][dateColumnName])).ToString();
+        // dateColumnName = "Date";
+        // date = ((pointList[1][dateColumnName])).ToString();
         // Debug.Log("INI BRO "+date);
 
                 for (var i = 0; i < rowCount; i++)
@@ -646,12 +671,12 @@ public class PointRenderer : MonoBehaviour {
             // Debug.Log(i);
             
             // kalau misalnya data gempa row terakhir
-            if ((found == true)&((i==rowCount)))
-            {
-                // i = i-1; // error kalau magicwords nya row pertama krn kayanya infinity loop
-                // Debug.Log(i);
-                break;
-            }
+            // if ((found == true)&((i==rowCount)))
+            // {
+            //     // i = i-1; // error kalau magicwords nya row pertama krn kayanya infinity loop
+            //     // Debug.Log(i);
+            //     break;
+            // }
             // Debug.Log(myString);
             // Debug.Log(myString2);
             // Debug.Log(a);
@@ -1013,6 +1038,8 @@ public class PointRenderer : MonoBehaviour {
 
     public string getDate()
     {
+        dateColumnName = "Date";
+        date = ((pointList[1][dateColumnName])).ToString();
         return date;
     }
 

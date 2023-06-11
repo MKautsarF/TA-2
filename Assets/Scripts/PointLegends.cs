@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class HeatmapPoint : MonoBehaviour
+public class PointLegends : MonoBehaviour
 {
     public bool renderHeatmapPrefabs = true;
     public bool renderHeatmapColor = true;
@@ -14,13 +14,23 @@ public class HeatmapPoint : MonoBehaviour
     public int heatMapScale = 1;
     public float miniScale = 0.1f;
     public PointRenderer point;
-    public List<int> listCount2;
-    List<GameObject> listLabel2 = new List<GameObject>();
+    public List<int> listCount2 = new List<int>();
+    // public List<int> cobaList = new List<int>();
+    public List<GameObject> listLabel2 = new List<GameObject>();
     GameObject labelObject2;
     TextMeshPro label2;
+    int testcount;
+    // public GameObject labelPrefab;
 
 
     int i;
+
+    void Awake()
+    {       
+        // listCount2 = point.getCount();
+        getListCount();
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +38,18 @@ public class HeatmapPoint : MonoBehaviour
 
         if (renderHeatmapPrefabs == true)
         {            
-            listCount2 = point.getCount();
-            Debug.Log("INI BRO: "+listCount2.Count);
+            // listCount2 = point.getCount();
+            // Debug.Log("INI BRO: "+listCount2.Count);
             PlaceHeatmapPoints();
             PlaceLabels();
-            PlaceLabels2();
+            // PlaceLabels2(listCount2);
         }
+    }
+
+    public List<int> getListCount()
+    {
+        listCount2 = point.getCount();
+        return listCount2;
     }
 
     private void PlaceHeatmapPoints()
@@ -88,57 +104,63 @@ public class HeatmapPoint : MonoBehaviour
         }
     }
 
-    private void PlaceLabels2()
-    {
+    public void PlaceLabels2(List<int> listC)
+    {    
+        // listCount2.Clear();   
+        Debug.Log("INI BRO testcount: "+ testcount);
+        // listCount2 = new List<int>();
+        // listCount2 = point.getCount();
         float x = 2.25f;
         float y = 2.5f;
         float z = 4;
         float labelWidth = 25;
-        for (int i = 0; i < listCount2.Count; i++)
+        // int ix;
+        Debug.Log("INI BRO x: "+ x);
+        Debug.Log("INI BRO listC.Count: "+ listC.Count);
+        for (int ix = 0; ix < listC.Count; ix++)
         {
+            Debug.Log("INI BRO ix: "+ ix);
             // Create a new label GameObject
             labelObject2 = new GameObject("Label");
-            // GameObject label_2Object = new GameObject("Label-2");
+            // labelObject2 = Instantiate(labelPrefab, Vector3.zero, Quaternion.identity);
+
             listLabel2.Add(labelObject2);
 
             // Add a TextMeshPro component to the label GameObject
             label2 = labelObject2.AddComponent<TextMeshPro>();
-            // TextMeshPro label_2 = label_2Object.AddComponent<TextMeshPro>();
 
             // Set the text content of the label
-            label2.text = "Jumlah: " + listCount2[i];
-            // label_2.text = "count"+i+": "+countTotal[i];
+            label2.text = "Jumlah: " + listC[ix];
 
             // Set the position of the label
             Vector3 position = new Vector3(x, y, z) * heatmapScale;
             label2.transform.position = position;
 
-            // y1 = y - 2;
-            // Vector3 position2 = new Vector3(x, y1, z) * heatmapScale;
-            // label_2.transform.position = position2;
-
             // Set the parent of the label GameObject
             label2.transform.SetParent(infoLabel.transform);
-            // label_2.transform.SetParent(infoLabel.transform);
 
             // Customize the scale
             Vector3 scale = new Vector3(miniScale, miniScale, miniScale); 
 
             // Set the scale of the label
             label2.transform.localScale = scale;
-            // label_2.transform.localScale = scale;
 
             // Set the width of the label
             label2.rectTransform.sizeDelta = new Vector2(labelWidth, label2.rectTransform.sizeDelta.y);
-            // label_2.rectTransform.sizeDelta = new Vector2(labelWidth, label.rectTransform.sizeDelta.y);
             
             // Increment the position values
             x += 2;
+
+            // listCount2.Clear();
+
         }
+        // listCount2.Clear();
+        testcount = testcount + 1;
     }
 
     private void PlaceLabels()
     {
+        // Debug.Log("INI BRO testcount: "+ testcount);
         float x = 2.25f;
         float y = 4;
         float z = 4;
@@ -186,6 +208,7 @@ public class HeatmapPoint : MonoBehaviour
             // Increment the position values
             x += 2;
         }
+        // testcount = testcount + 1;
     }
 
     public float distanceGempa(int number)
@@ -233,12 +256,16 @@ public class HeatmapPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(listCount2 != point.getCount())
-        {
-            RemoveLabels2();
-            listCount2 = point.getCount();
-            PlaceLabels2();
-        }
+        // if((Input.GetKey(KeyCode.DownArrow))||(Input.GetKey(KeyCode.UpArrow)))
+        // {
+        //     Debug.Log("INI BRO update");
+        //     RemoveLabels2();
+        //     getListCount();
+        //     // listCount2 = point.getCount();
+        //     // cobaList = getListCount();
+        //     // Debug.Log("cobaList[9]: " + cobaList[1]);
+        //     PlaceLabels2();
+        // }
         // if(listCount2 != point.getCount())
         // {
         //     listCount2.Clear();
@@ -257,18 +284,21 @@ public class HeatmapPoint : MonoBehaviour
         // }
     }
 
-    void RemoveLabels2()
+    public void RemoveLabels2()
     {
         // foreach (Transform child in infoLabel.transform)
         // {
         //     Destroy(child.gameObject);
         // }
+        // listCount2.Clear();
         foreach(var labelObject2 in listLabel2)
         {
             Destroy(labelObject2);
-            Destroy(label2);
+            // Destroy(label2);
         }
         listLabel2.Clear();
+        
+        listCount2.Clear();
 
     }
 }
