@@ -10,6 +10,8 @@ TagManager:
   - DataPoint
   - pulau
   - datapoint
+  - Right Hand
+  - Left Hand
   layers:
   - Default
   - TransparentFX

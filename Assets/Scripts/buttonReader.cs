@@ -9,6 +9,8 @@ public class buttonReader : MonoBehaviour
 
     public Text bText;
     public Text dateText;
+    public Text datasetText;
+    public Text countText;
     int counter;
 
     // private int fileIndex = 0;
@@ -368,7 +370,10 @@ public class buttonReader : MonoBehaviour
             dateText.text = dateT;
             found = true;
         }
-    }
+        datasetText.text = fileName;
+        countText.text = point.pointList.Count.ToString("0");
+
+}
 
     // public List<Dictionary<string, object>> updateCSV()
     // {
