@@ -15,19 +15,16 @@ public class PointLegends : MonoBehaviour
     public float miniScale = 0.1f;
     public PointRenderer point;
     public List<int> listCount2 = new List<int>();
-    // public List<int> cobaList = new List<int>();
     public List<GameObject> listLabel2 = new List<GameObject>();
     GameObject labelObject2;
     TextMeshPro label2;
     int testcount;
-    // public GameObject labelPrefab;
 
 
     int i;
 
     void Awake()
     {       
-        // listCount2 = point.getCount();
         getListCount();
 
     }
@@ -38,11 +35,8 @@ public class PointLegends : MonoBehaviour
 
         if (renderHeatmapPrefabs == true)
         {            
-            // listCount2 = point.getCount();
-            // Debug.Log("INI BRO: "+listCount2.Count);
             PlaceHeatmapPoints();
             PlaceLabels();
-            // PlaceLabels2(listCount2);
         }
     }
 
@@ -106,23 +100,14 @@ public class PointLegends : MonoBehaviour
 
     public void PlaceLabels2(List<int> listC)
     {    
-        // listCount2.Clear();   
-        Debug.Log("INI BRO testcount: "+ testcount);
-        // listCount2 = new List<int>();
-        // listCount2 = point.getCount();
         float x = 2.25f;
         float y = 2.5f;
         float z = 4;
         float labelWidth = 25;
-        // int ix;
-        Debug.Log("INI BRO x: "+ x);
-        Debug.Log("INI BRO listC.Count: "+ listC.Count);
         for (int ix = 0; ix < listC.Count; ix++)
         {
-            Debug.Log("INI BRO ix: "+ ix);
             // Create a new label GameObject
             labelObject2 = new GameObject("Label");
-            // labelObject2 = Instantiate(labelPrefab, Vector3.zero, Quaternion.identity);
 
             listLabel2.Add(labelObject2);
 
@@ -151,16 +136,13 @@ public class PointLegends : MonoBehaviour
             // Increment the position values
             x += 2;
 
-            // listCount2.Clear();
 
         }
-        // listCount2.Clear();
         testcount = testcount + 1;
     }
 
     private void PlaceLabels()
     {
-        // Debug.Log("INI BRO testcount: "+ testcount);
         float x = 2.25f;
         float y = 4;
         float z = 4;
@@ -171,44 +153,33 @@ public class PointLegends : MonoBehaviour
         {
             // Create a new label GameObject
             GameObject labelObject = new GameObject("Label");
-            // GameObject label_2Object = new GameObject("Label-2");
 
             // Add a TextMeshPro component to the label GameObject
             TextMeshPro label = labelObject.AddComponent<TextMeshPro>();
-            // TextMeshPro label_2 = label_2Object.AddComponent<TextMeshPro>();
 
             jarakGempa = distanceGempa(i);
             // Set the text content of the label
             label.text = "<= " + jarakGempa + " km";
-            // label_2.text = "count"+i+": "+countTotal[i];
 
             // Set the position of the label
             Vector3 position = new Vector3(x, y, z) * heatmapScale;
             label.transform.position = position;
 
-            // y1 = y - 2;
-            // Vector3 position2 = new Vector3(x, y1, z) * heatmapScale;
-            // label_2.transform.position = position2;
-
             // Set the parent of the label GameObject
             label.transform.SetParent(infoLabel.transform);
-            // label_2.transform.SetParent(infoLabel.transform);
 
             // Customize the scale
             Vector3 scale = new Vector3(miniScale, miniScale, miniScale); 
 
             // Set the scale of the label
             label.transform.localScale = scale;
-            // label_2.transform.localScale = scale;
 
             // Set the width of the label
             label.rectTransform.sizeDelta = new Vector2(labelWidth, label.rectTransform.sizeDelta.y);
-            // label_2.rectTransform.sizeDelta = new Vector2(labelWidth, label.rectTransform.sizeDelta.y);
             
             // Increment the position values
             x += 2;
         }
-        // testcount = testcount + 1;
     }
 
     public float distanceGempa(int number)
@@ -256,45 +227,14 @@ public class PointLegends : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if((Input.GetKey(KeyCode.DownArrow))||(Input.GetKey(KeyCode.UpArrow)))
-        // {
-        //     Debug.Log("INI BRO update");
-        //     RemoveLabels2();
-        //     getListCount();
-        //     // listCount2 = point.getCount();
-        //     // cobaList = getListCount();
-        //     // Debug.Log("cobaList[9]: " + cobaList[1]);
-        //     PlaceLabels2();
-        // }
-        // if(listCount2 != point.getCount())
-        // {
-        //     listCount2.Clear();
-        //     i = 0;
-        //     for (int ixx=0; ixx<10;ixx++)
-        //     {
-        //         Destroy(labelObject2);
-        //         Destroy(label2);
-        //     }
-        //     // foreach (var labelObject2 in listLabel2)
-        //     // {
-        //     //     Destroy(labelObject2);
-        //     // }
-        //     listCount2 = point.getCount();
-        //     PlaceLabels2();
-        // }
+        
     }
 
     public void RemoveLabels2()
     {
-        // foreach (Transform child in infoLabel.transform)
-        // {
-        //     Destroy(child.gameObject);
-        // }
-        // listCount2.Clear();
         foreach(var labelObject2 in listLabel2)
         {
             Destroy(labelObject2);
-            // Destroy(label2);
         }
         listLabel2.Clear();
         

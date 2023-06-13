@@ -31,7 +31,6 @@ public class logicManager : MonoBehaviour
     [ContextMenu("get lokasi")]
     public string getLokasi()
     {
-        // dimana = berada;
         return dimana;
     }
 }

@@ -13,8 +13,6 @@ public class buttonReader : MonoBehaviour
     public Text countText;
     int counter;
 
-    // private int fileIndex = 0;
-    // private string baseFileName = "datav2_";
     private List<Dictionary<string, object>> dataList;
     private string fileName;
 
@@ -26,20 +24,15 @@ public class buttonReader : MonoBehaviour
     int beforeUnderscoreIndex;
     string beforeUnderscoreStr;
     string periode;
-    // public string ColumnName;
     string dateT;
     bool found = false;
 
     void Awake()
     {
         fileName = point.inputFile();        
-        // ColumnName = point.columnList[7];
-        // Debug.Log("INI BRO: "+ColumnName);
 
         // Split the fileName into index and baseFileName
         underscoreIndex = fileName.LastIndexOf('_');
-        // Debug.Log(beforeUnderscoreIndex);
-        // Debug.Log(beforeUnderscoreStr);
         if (underscoreIndex >= 0)
         {
             beforeUnderscoreIndex = underscoreIndex - 1;
@@ -65,10 +58,6 @@ public class buttonReader : MonoBehaviour
             return;
         }
 
-        // Now you can use the index and baseFileName variables as needed
-        // Debug.Log("index: " + index);
-        // Debug.Log("baseFileName: " + baseFileName);
-        // bText.text = fileName;
 
 
     }
@@ -106,25 +95,11 @@ public class buttonReader : MonoBehaviour
         }
         // Do whatever you want with the dataList, such as processing the data or displaying it
         
-        // bText.text = fileName;
     }
 
     public void ReadPreviousCSVFile()
     {
-        // if (index > 0)
-        // {
-        //     index--; // Decrement the file index to move to the previous CSV file
-
-        //     fileName = baseFileName + index.ToString();
-
-        //     dataList = CSVReader.Read(fileName);
-
-        //     // Do whatever you want with the dataList, such as processing the data or displaying it
-        // }
-        // else
-        // {
-        //     // Debug.Log("Cannot go back further. Already at the first CSV file.");
-        // }
+        
         if(beforeUnderscoreStr=="3"){
             if (index == 0)
             {
@@ -147,13 +122,11 @@ public class buttonReader : MonoBehaviour
 
             dataList = CSVReader.Read(fileName);
         }
-        // bText.text = fileName;
     }
 
 
     public void ButtonPressed()
     {
-        // var counter = 0;
         counter++;
         bText.text = counter + "";
     }
@@ -362,11 +335,9 @@ public class buttonReader : MonoBehaviour
             }
         }
         bText.text = periode;
-        // point.pointList = dataList;
         if(found == false )
         {
             dateT = point.getDate();
-            // Debug.Log("INI BRO: "+dateT);
             dateText.text = dateT;
             found = true;
         }
@@ -375,10 +346,6 @@ public class buttonReader : MonoBehaviour
 
 }
 
-    // public List<Dictionary<string, object>> updateCSV()
-    // {
-    //     return dataList;
-    // }
 
     public string updateCSV()
     {
