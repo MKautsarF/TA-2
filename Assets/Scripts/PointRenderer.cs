@@ -725,6 +725,11 @@ public class PointRenderer : MonoBehaviour {
         return inputfile;
     }
 
+    public string getmyString2()
+    {
+        return myString2;
+    }
+
 }
 
 

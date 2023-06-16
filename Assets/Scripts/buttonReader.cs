@@ -12,6 +12,8 @@ public class buttonReader : MonoBehaviour
     public Text dateText;
     public Text datasetText;
     public Text countText;
+    public Text statusText;
+    public Text countdownText;
     int counter;
 
     private List<Dictionary<string, object>> dataList;
@@ -26,8 +28,20 @@ public class buttonReader : MonoBehaviour
     string beforeUnderscoreStr;
     string periode;
     string dateT;
+    string status;
+    string countdown;
     bool found = false;
     DateTime mydate = new DateTime(2021, 6, 16, 0, 0, 0);
+    TimeSpan timeSpan;
+    TimeSpan timeSpan2;
+    DateTime addResult;
+    DateTime addResult2;
+    DateTime gempaResult;
+    TimeSpan countdownResult;
+    
+    bool foundGempa;
+
+    int normal;
     //int hour = mydate.Hour;
     //int minute = mydate.Minute;
     //int second = mydate.Second;
@@ -215,124 +229,204 @@ public class buttonReader : MonoBehaviour
             switch (index)
             {
                 case 0:
-                    periode = "00:00:00 - 00:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 1:
-                    periode = "00:30:00 - 01:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 2:
-                    periode = "01:00:00 - 01:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 3:
-                    periode = "01:30:00 - 02:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 4:
-                    periode = "02:00:00 - 02:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 5:
-                    periode = "02:30:00 - 03:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 6:
-                    periode = "03:00:00 - 03:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 7:
-                    periode = "03:30:00 - 04:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 8:
-                    periode = "04:00:00 - 04:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 9:
-                    periode = "04:30:00 - 05:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 10:
-                    periode = "05:00:00 - 05:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 11:
-                    periode = "05:30:00 - 06:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 12:
-                    periode = "06:00:00 - 06:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 13:
-                    periode = "06:30:00 - 07:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 14:
-                    periode = "07:00:00 - 07:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 15:
-                    periode = "07:30:00 - 08:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 16:
-                    periode = "08:00:00 - 08:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 17:
-                    periode = "08:30:00 - 09:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 18:
-                    periode = "09:00:00 - 09:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 19:
-                    periode = "09:30:00 - 10:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 20:
-                    periode = "10:00:00 - 10:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 21:
-                    periode = "10:30:00 - 11:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 22:
-                    periode = "11:00:00 - 11:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 23:
-                    periode = "11:30:00 - 12:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 24:
-                    periode = "12:00:00 - 12:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 25:
-                    periode = "12:30:00 - 13:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 26:
-                    periode = "13:00:00 - 13:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 27:
-                    periode = "13:30:00 - 14:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 28:
-                    periode = "14:00:00 - 14:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 29:
-                    periode = "14:30:00 - 15:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 30:
-                    periode = "15:00:00 - 15:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 31:
-                    periode = "15:30:00 - 16:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 32:
-                    periode = "16:00:00 - 16:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 33:
-                    periode = "16:30:00 - 17:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 34:
-                    periode = "17:00:00 - 17:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 35:
-                    periode = "17:30:00 - 18:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 36:
-                    periode = "18:00:00 - 18:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 37:
-                    periode = "18:30:00 - 19:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 38:
-                    periode = "19:00:00 - 19:30:00";
+                    evenTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 case 39:
-                    periode = "19:30:00 - 20:00:00";
+                    oddTime(index);
+                    cekStatus();
+                    cekCountdown(index);
                     break;
                 default:
                     periode = "00:00:00 - 00:00:00";
@@ -340,6 +434,8 @@ public class buttonReader : MonoBehaviour
             }
         }
         bText.text = periode;
+        statusText.text = status;
+        countdownText.text = countdown;
         if(found == false )
         {
             dateT = point.getDate();
@@ -351,6 +447,76 @@ public class buttonReader : MonoBehaviour
 
 }
 
+    string cekCountdown(int index2)
+    {
+        DateTime baseDateTime = new DateTime(2021, 6, 16, 0, 0, 0);
+        string minusplus;
+        
+        if(index2<=27)
+        {
+            countdownResult = gempaResult - addResult;
+            minusplus = "-";
+        }
+        else
+        {
+            countdownResult = addResult - gempaResult;
+            minusplus = "+";
+        }
+        if(foundGempa==true)
+        {
+            minusplus = "";
+        }
+
+        DateTime newDateTime = baseDateTime.Add(countdownResult);
+
+        countdown = minusplus + newDateTime.ToString(" HH ") + "hours" + newDateTime.ToString(" mm ") + "minutes";
+        return countdown;
+    }
+
+    string oddTime(int index2)
+    {
+        normal = index2/2;
+        timeSpan = new TimeSpan(0,normal,30,0);
+        addResult = mydate + timeSpan;
+
+        timeSpan2 = new TimeSpan(0,0,30,0);
+        addResult2 = addResult + timeSpan2;
+
+        periode = addResult.ToString("HH:mm:ss - ")+addResult2.ToString("HH:mm:ss");
+        return periode;
+
+    }
+
+    string evenTime(int index2)
+    {
+        normal = index2/2;
+        timeSpan = new TimeSpan(0,normal,0,0);
+        addResult = mydate + timeSpan;
+
+        timeSpan2 = new TimeSpan(0,0,30,0);
+        addResult2 = addResult + timeSpan2;
+
+        periode = addResult.ToString("HH:mm:ss - ")+addResult2.ToString("HH:mm:ss");
+        return periode;
+        
+    }
+
+    string cekStatus()
+    {
+        string cekGempa = point.getmyString2();
+        if(cekGempa != null)
+        {
+            status = "Earthquake is occuring";
+            gempaResult = addResult;
+            foundGempa = true;
+        }
+        else
+        {
+            status = "Earthquake is not occuring";
+            foundGempa = false;
+        }
+        return status;
+    }
 
     public string updateCSV()
     {

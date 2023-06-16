@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/TA_Dekstop Ver.unity
+- path: Assets/Scenes/TA_VR Ver.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

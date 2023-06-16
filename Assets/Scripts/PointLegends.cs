@@ -117,6 +117,12 @@ public class PointLegends : MonoBehaviour
             // Set the text content of the label
             label2.text = "Jumlah: " + listC[ix];
 
+            // Set the color of the label to black
+            label2.color = Color.black;
+
+            // Set the style of the label to bold
+            label2.fontStyle = FontStyles.Bold;
+
             // Set the position of the label
             Vector3 position = new Vector3(x, y, z) * heatmapScale;
             label2.transform.position = position;
@@ -160,6 +166,12 @@ public class PointLegends : MonoBehaviour
             jarakGempa = distanceGempa(i);
             // Set the text content of the label
             label.text = "<= " + jarakGempa + " km";
+
+            // Set the color of the label to black
+            label.color = Color.black;
+
+            // Set the style of the label to bold
+            label.fontStyle = FontStyles.Bold;
 
             // Set the position of the label
             Vector3 position = new Vector3(x, y, z) * heatmapScale;

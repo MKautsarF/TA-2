@@ -12,6 +12,7 @@ TagManager:
   - datapoint
   - Right Hand
   - Left Hand
+  - gempa
   layers:
   - Default
   - TransparentFX
