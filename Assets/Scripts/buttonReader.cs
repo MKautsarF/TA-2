@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class buttonReader : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class buttonReader : MonoBehaviour
     string periode;
     string dateT;
     bool found = false;
+    DateTime mydate = new DateTime(2021, 6, 16, 0, 0, 0);
+    //int hour = mydate.Hour;
+    //int minute = mydate.Minute;
+    //int second = mydate.Second;
 
     void Awake()
     {
