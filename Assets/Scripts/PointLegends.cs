@@ -149,11 +149,11 @@ public class PointLegends : MonoBehaviour
 
     private void PlaceLabels()
     {
-        float x = 2.25f;
+        float x = 2.8f;
         float y = 4;
         float z = 4;
         float jarakGempa;
-        float labelWidth = 25;
+        float labelWidth = 50;
 
         for (int i = 0; i < 10; i++)
         {

@@ -273,7 +273,6 @@ public class PointRenderer : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        // Debug.Log("masuk ganti csv-1");
         if(Input.GetKey(KeyCode.RightArrow))
         {
             button.ReadNextCSVFile();
@@ -282,7 +281,6 @@ public class PointRenderer : MonoBehaviour {
         else if(Input.GetKey(KeyCode.LeftArrow))
         {
             button.ReadPreviousCSVFile();
-            labelO.uiLables();
         }
 
         else if (Input.GetKey(KeyCode.UpArrow))
