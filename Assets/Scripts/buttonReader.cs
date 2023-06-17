@@ -14,12 +14,11 @@ public class buttonReader : MonoBehaviour
     public Text countText;
     public Text statusText;
     public Text countdownText;
+    public Text testText;
     int counter;
 
     private List<Dictionary<string, object>> dataList;
     private string fileName;
-
-    public PointRenderer point;
 
     int index = 99;
     string baseFileName;
@@ -42,9 +41,11 @@ public class buttonReader : MonoBehaviour
     bool foundGempa;
 
     int normal;
-    //int hour = mydate.Hour;
-    //int minute = mydate.Minute;
-    //int second = mydate.Second;
+
+    public PointLegends pLegend;
+    public PointRenderer point;
+
+    List<int> listCount = new List<int>();
 
     void Awake()
     {
@@ -80,6 +81,30 @@ public class buttonReader : MonoBehaviour
 
 
     }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        placeLegendLabel();
+    }
+
+
+    void placeLegendLabel()
+    {
+        //listCount = point.getCount();
+        //testText.text =  pLegend.distanceGempa(0) + " km: " + listCount[0] + "\n" + pLegend.distanceGempa(1) + " km: " + listCount[1];
+        listCount = point.getCount();
+
+        string labelText = "";
+
+        for (int i = 0; i < listCount.Count; i++)
+        {
+            labelText += pLegend.distanceGempa(i) + " km: " + listCount[i] + "\n";
+        }
+
+        testText.text = labelText;
+    }
+
 
     public int getIndex()
     {
@@ -148,10 +173,6 @@ public class buttonReader : MonoBehaviour
     {
         counter++;
         bText.text = counter + "";
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
     }
 
 
@@ -437,7 +458,8 @@ public class buttonReader : MonoBehaviour
         bText.text = periode;
         statusText.text = status;
         countdownText.text = countdown;
-        if(found == false )
+        placeLegendLabel();
+        if (found == false )
         {
             dateT = point.getDate();
             dateText.text = dateT;
