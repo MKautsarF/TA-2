@@ -38,7 +38,7 @@ public class buttonReader : MonoBehaviour
     DateTime addResult2;
     DateTime gempaResult;
     TimeSpan countdownResult;
-    
+
     bool foundGempa;
 
     int normal;
@@ -153,6 +153,7 @@ public class buttonReader : MonoBehaviour
     void Start()
     {
     }
+
 
     // Update is called once per frame
     void Update()

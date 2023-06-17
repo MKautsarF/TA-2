@@ -13,6 +13,7 @@ TagManager:
   - Right Hand
   - Left Hand
   - gempa
+  - ui
   layers:
   - Default
   - TransparentFX

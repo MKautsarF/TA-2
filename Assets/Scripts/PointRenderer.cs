@@ -139,6 +139,7 @@ public class PointRenderer : MonoBehaviour {
     string date;
 
     public PointLegends plegend;
+    public LabelOrienter_Smooth labelO;
     public List<int> legendList = new List<int>();
     // public List<string> columnList;
 
@@ -281,9 +282,15 @@ public class PointRenderer : MonoBehaviour {
         else if(Input.GetKey(KeyCode.LeftArrow))
         {
             button.ReadPreviousCSVFile();
+            labelO.uiLables();
         }
 
-        if(inputfile != button.updateCSV())
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            labelO.uiLables();
+        }
+
+        if (inputfile != button.updateCSV())
         {
             Reset();
             inputfile = button.updateCSV();
