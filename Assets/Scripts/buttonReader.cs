@@ -168,14 +168,6 @@ public class buttonReader : MonoBehaviour
         }
     }
 
-
-    public void ButtonPressed()
-    {
-        counter++;
-        bText.text = counter + "";
-    }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -203,14 +195,19 @@ public class buttonReader : MonoBehaviour
         placeLegendLabel();
         if (found == false )
         {
-            dateT = point.getDate();
-            dateText.text = dateT;
-            found = true;
+            setTanggal();
         }
         datasetText.text = fileName;
         countText.text = point.pointList.Count.ToString("0");
 
 }
+
+    public void setTanggal()
+    {
+        dateT = point.getDate();
+        dateText.text = dateT;
+        found = true;
+    }
 
     string cekCountdown(int index2)
     {
