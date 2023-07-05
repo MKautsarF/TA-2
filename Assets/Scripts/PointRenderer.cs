@@ -138,6 +138,12 @@ public class PointRenderer : MonoBehaviour {
     string dateColumnName;
     string date;
 
+    string depth;
+    string mag;
+
+    string depthColumnName;
+    string magColumnName;
+
     public PointLegends plegend;
     public LabelOrienter_Smooth labelO;
     public List<int> legendList = new List<int>();
@@ -148,6 +154,20 @@ public class PointRenderer : MonoBehaviour {
     public void UpdateVisualization(string file)
     {
         pointList = CSVReader.Read(file);
+    }
+
+    public string getDepth()
+    {
+        depthColumnName = "Depth";
+        depth = ((pointList[0][depthColumnName])).ToString();
+        return depth;
+    }
+
+    public string getMag()
+    {
+        depthColumnName = "Magnitude";
+        mag = ((pointList[0][depthColumnName])).ToString();
+        return mag;
     }
 
     void Awake()

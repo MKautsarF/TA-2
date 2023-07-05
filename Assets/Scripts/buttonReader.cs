@@ -29,6 +29,8 @@ public class buttonReader : MonoBehaviour
     string dateT;
     string status;
     string countdown;
+    string depth;
+    string mag;
     bool found = false;
     DateTime mydate = new DateTime(2021, 6, 16, 0, 0, 0);
     TimeSpan timeSpan;
@@ -268,7 +270,9 @@ public class buttonReader : MonoBehaviour
         string cekGempa = point.getmyString2();
         if(cekGempa != null)
         {
-            status = "Earthquake is occuring";
+            depth = point.getDepth();
+            mag = point.getMag();
+            status = "Earthquake is occuring"+", depth "+depth+" km,"+"\n"+"magnitude "+mag;
             gempaResult = addResult;
             foundGempa = true;
         }
