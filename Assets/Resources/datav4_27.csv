@@ -1,5 +1,5 @@
 ,maid,longitude,latitude,horizontal_accuracy,city_hasc,postcode,Date,Hour,count,Y,Color,Magnitude,Depth
-0,datagempa,129.527,-3.568,0.0,-,-,16-06-21,13:43:00,1,10.0,red,6.1,10
+0,datagempa,129.527,-3.568,0.0,-,-,16-06-21,13:43:08,1,10.0,red,6.1,10
 1,86fe9f650a157c7b9e22ba4ef24bfb056914bd7b,128.21885,-3.690325,10.0,ID.MA.AM,97128.0,16-06-21,13:43:05,60,1.0,green,-,-
 2,26fe4fa0d982e90468b27e2fa3665a282ab68c45,129.799955,-2.921788,14.0,ID.MA.MT,97544.0,16-06-21,13:43:05,613,0.999,green,-,-
 3,26fe4fa0d982e90468b27e2fa3665a282ab68c45,129.799955,-2.921788,20.0,ID.MA.MT,97544.0,16-06-21,13:43:06,613,0.999,green,-,-

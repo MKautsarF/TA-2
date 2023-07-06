@@ -31,6 +31,9 @@ public class buttonReader : MonoBehaviour
     string countdown;
     string depth;
     string mag;
+    string ghour;
+    string xCol;
+    string zCol;
     bool found = false;
     DateTime mydate = new DateTime(2021, 6, 16, 0, 0, 0);
     TimeSpan timeSpan;
@@ -272,7 +275,10 @@ public class buttonReader : MonoBehaviour
         {
             depth = point.getDepth();
             mag = point.getMag();
-            status = "Earthquake is occuring"+", depth "+depth+" km,"+"\n"+"magnitude "+mag;
+            ghour = point.getHour();
+            xCol = point.getXColumn();
+            zCol = point.getZColumn();
+            status = "Earthquake is occuring"+", depth "+depth+" km,"+"\n"+"magnitude "+mag+" at "+ghour+"\n"+xCol+"°E "+zCol+"°S";
             gempaResult = addResult;
             foundGempa = true;
         }

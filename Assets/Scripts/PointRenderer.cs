@@ -140,9 +140,13 @@ public class PointRenderer : MonoBehaviour {
 
     string depth;
     string mag;
+    string hour;
+    string xColumn;
+    string zColumn;
 
     string depthColumnName;
     string magColumnName;
+    string hourColumnName;
 
     public PointLegends plegend;
     public LabelOrienter_Smooth labelO;
@@ -168,6 +172,25 @@ public class PointRenderer : MonoBehaviour {
         depthColumnName = "Magnitude";
         mag = ((pointList[0][depthColumnName])).ToString();
         return mag;
+    }
+
+    public string getHour()
+    {
+        hourColumnName = "Hour";
+        hour = ((pointList[0][hourColumnName])).ToString();
+        return hour;
+    }
+
+    public string getXColumn()
+    {
+        xColumn = ((pointList[0][xColumnName])).ToString();
+        return xColumn;
+    }
+
+    public string getZColumn()
+    {
+        zColumn = ((pointList[0][zColumnName])).ToString();
+        return zColumn;
     }
 
     void Awake()
