@@ -20,8 +20,8 @@ public class buttonReader : MonoBehaviour
     private List<Dictionary<string, object>> dataList;
     private string fileName;
 
-    int index = 99;
-    string baseFileName;
+    public int index = 99;
+    public string baseFileName;
     int underscoreIndex;
     int beforeUnderscoreIndex;
     string beforeUnderscoreStr;
@@ -56,6 +56,39 @@ public class buttonReader : MonoBehaviour
     {
         fileName = point.inputFile();        
 
+        // // Split the fileName into index and baseFileName
+        // underscoreIndex = fileName.LastIndexOf('_');
+        // if (underscoreIndex >= 0)
+        // {
+        //     beforeUnderscoreIndex = underscoreIndex - 1;
+        //     beforeUnderscoreStr = fileName.Substring(beforeUnderscoreIndex, 1);
+        //     // Get the substring starting from the character after the last underscore
+        //     string indexStr = fileName.Substring(underscoreIndex + 1);
+
+        //     // Parse the index string to an integer
+        //     if (int.TryParse(indexStr, out index))
+        //     {
+        //         // Get the baseFileName by removing the index string from the fileName
+        //         baseFileName = fileName.Substring(0, underscoreIndex + 1);
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("Failed to parse the index from the fileName.");
+        //         return;
+        //     }
+        // }
+        // else
+        // {
+        //     Debug.Log("Invalid fileName format. Unable to split into index and baseFileName.");
+        //     return;
+        // }
+        getfilename();
+
+
+    }
+
+    public void getfilename()
+    {
         // Split the fileName into index and baseFileName
         underscoreIndex = fileName.LastIndexOf('_');
         if (underscoreIndex >= 0)
@@ -82,9 +115,6 @@ public class buttonReader : MonoBehaviour
             Debug.Log("Invalid fileName format. Unable to split into index and baseFileName.");
             return;
         }
-
-
-
     }
 
     // Start is called before the first frame update

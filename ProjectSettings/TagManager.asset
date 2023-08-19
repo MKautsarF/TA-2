@@ -14,6 +14,7 @@ TagManager:
   - Left Hand
   - gempa
   - ui
+  - collide
   layers:
   - Default
   - TransparentFX

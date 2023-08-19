@@ -71,16 +71,20 @@ public class PointRenderer : MonoBehaviour {
     // The prefab for the data particlePoints that will be instantiated
     public GameObject PointPrefab;
     public GameObject GempaPrefab;
+    public GameObject HeatPrefab;
 
     // Object which will contain instantiated prefabs in hiearchy
     public GameObject PointHolder;
+    public GameObject HeatHolder;
     public GameObject GempaHolder;
     public GameObject dataPoint;
+    public GameObject heatPoint;
     public GameObject gempaPoint;
     Vector3 position;
     Vector3 center;
     Vector3 center2;
     Vector3 position2;
+    Vector3 position3;
     Vector3 panjang;
     Vector3 center3;
     Color color;
@@ -110,7 +114,9 @@ public class PointRenderer : MonoBehaviour {
 
     // List for holding data from CSV reader
     public List<Dictionary<string, object>> pointList;
+    public List<Dictionary<string, object>> pointList2;
     public List<GameObject> dPoints = new List<GameObject>();
+    public List<GameObject> hPoints = new List<GameObject>();
     public List<GameObject> dGempa = new List<GameObject>();
     public List<int> countTotal = new List<int>();
 
@@ -256,6 +262,8 @@ public class PointRenderer : MonoBehaviour {
             GetComponent<ParticleSystem>().SetParticles(particlePoints, particlePoints.Length);
         }
         
+        Heatmap();
+        
         
     }
 
@@ -312,6 +320,68 @@ public class PointRenderer : MonoBehaviour {
         count9 = 0;
     }
     
+    void Heatmap()
+    {
+        //button.ReadPreviousCSVFile();
+        button.getfilename();
+        int indexH = button.index;
+        // int indexH = 100;
+        string basefilenameH = button.baseFileName;
+        Debug.Log("basefilename: "+basefilenameH+" index: "+indexH);
+        string fileNameH = basefilenameH + indexH.ToString();
+        pointList2 = CSVReader.Read(fileNameH);
+
+        int rowCount2 = pointList2.Count;
+        // Debug.Log(rowCount);
+                for (var i = 0; i < rowCount2; i++)
+        {
+            // Set x/y/z, standardized to between 0-1
+            x = (Convert.ToSingle(pointList2[i][xColumnName]));
+            y = (Convert.ToSingle(pointList2[i][yColumnName]));
+            z = (Convert.ToSingle(pointList2[i][zColumnName]));
+
+            // Transform the values from negative to positive if necessary
+            if (x < 0)
+                x = -x;
+            if (y < 0)
+                y = -y;
+            if (z < 0)
+                z = -z;
+
+            // Normalize the transformed values
+            x = (x - xMin) / (xMax - xMin);
+            y = (y - yMin) / (yMax - yMin);
+            // z = (z - zMin) / (zMax - zMin);
+            z = (z - z1Min) / (z1Max - z1Min);
+
+            // Create vector 3 for positioning particlePoints
+            position3 = new Vector3 (x, y, z) * plotScale;
+
+            //instantiate as gameobject variable so that it can be manipulated within loop
+            heatPoint = Instantiate (HeatPrefab, Vector3.zero, Quaternion.identity);
+            hPoints.Add(heatPoint);
+
+            // Make child of PointHolder object, to keep particlePoints within container in hiearchy
+            heatPoint.transform.parent = HeatHolder.transform;
+
+            // Position point at relative to parent
+            heatPoint.transform.localPosition = position3;
+
+            heatPoint.transform.localScale = new Vector3(pointScale, pointScale, pointScale);
+
+            // Converts index to string to name the point the index number
+            string heatPointName = i.ToString();
+
+            // Assigns name to the prefab
+            heatPoint.transform.name = heatPointName;
+
+        }
+        // hPoints = new List<GameObject>(dPoints);
+        // Debug.Log("hPoints[1]: "+hPoints[1]);
+
+
+
+    }
 		
 	// Update is called once per frame
 	void Update ()
@@ -333,6 +403,15 @@ public class PointRenderer : MonoBehaviour {
 
         if (inputfile != button.updateCSV())
         {
+            
+            // int a = button.getIndex();
+            // Debug.Log("index sekarang: "+a);
+            foreach (var heatPoint in hPoints)
+            {
+                Destroy(heatPoint);
+            }
+            hPoints.Clear();
+            Heatmap();
             Reset();
             inputfile = button.updateCSV();
             UpdateVisualization(inputfile);
@@ -480,6 +559,8 @@ public class PointRenderer : MonoBehaviour {
 
             // Assigns name to the prefab
             dataPoint.transform.name = dataPointName;
+
+            Debug.Log("Point: "+ dataPointName+ ", x: "+x+ ", x: "+y+ ", x: "+z);
 
             if (renderPrefabsWithColor == true)
             {
@@ -634,6 +715,8 @@ public class PointRenderer : MonoBehaviour {
             }
            						
 		}
+        
+
 	}
 
     public string getDate()
