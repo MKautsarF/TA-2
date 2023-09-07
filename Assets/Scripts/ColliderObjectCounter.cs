@@ -39,7 +39,7 @@ public class ColliderObjectCounter : MonoBehaviour
             Debug.Log("Total objects inside collider "+countingCollider+": " + count);
             // }
         float SD = stdev();
-        // Debug.Log("standar deviasi "+countingCollider+": "+SD);
+        Debug.Log("standar deviasi "+countingCollider+": "+SD);
         float anomalyValue = anomaly(count, SD);
         Debug.Log("anomaly value "+countingCollider+": "+anomalyValue);
 
